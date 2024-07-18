@@ -1,0 +1,26 @@
+{% extends "tienda/base.html" %}
+{% block title %}MasterBikes - Bicicletas{% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        {% for bicicleta in bicicletas %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static bicicleta.src_imagen %}" class="card-img-top" alt="{{ bicicleta.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ bicicleta.nombre }}</h5>
+                    <p class="card-text">ID Producto: {{ bicicleta.id }}</p>
+                    <p class="card-text">Precio: ${{ bicicleta.precio|floatformat:"g" }} CLP</p>
+                    <p class="card-text">Precio: ${{ bicicleta.precio_dolar|floatformat:"g" }} USD</p>
+                    <p class="card-text">Precio Arriendo: ${{ bicicleta.precio_arriendo|floatformat:"g" }} CLP</p>
+                    <a href="{% url 'arriendoBicicletas' bicicleta_id=bicicleta.id %}" class="btn btn-primary">Arrendar Bicicleta</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

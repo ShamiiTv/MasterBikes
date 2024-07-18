@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static './css/styleindex.css' %}">
+    <link rel="icon" href="{% static './Images/Iconos/LogoMB.png' %}" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body style="padding-right: 0;">
+    <header>
+        <nav class="navbar navbar-expand-lg .bg-black justify-content-center">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static './Images/Iconos/LogoMB.png' %}" alt="LogoPagina" class="logoPagina"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">    
+                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                        <a class="nav-link" href="{% url 'bicicletas' %}">Bicicletas</a>
+                        <a class="nav-link" href="{% url 'reparaciones' %}">Reparaciones</a>
+                        <div class="sesion">
+                            {% if user.is_authenticated %}
+                            <span class="navbar-text">
+                                Bienvenido, {{ user.username }} |
+                            </span>
+                            <a class="nav-link" href="{% url 'profile' %}"><button class="btn btn-primary">Perfil</button></a>
+                            <a class="nav-link" href="{% url 'logout' %}"><button class="btn btn-primary">Cerrar Sesion</button></a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'login' %}"><button class="btn btn-primary"> Iniciar Sesion </button></a>
+                            <a class="nav-link" href="{% url 'registro' %}"><button class="btn btn-primary">Registrarse</button></a>
+                        {% endif %}
+                        </div>
+                        <a class="nav-link carro" href="{% url 'historial_arriendos' %}"><img src="{% static './Images/Iconos/Bicycle.png' %}" alt="Carrito">
+                        
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+        {% block content %}{% endblock %}
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Carrito De Compras</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p class="texto-degradado2">Producto añadido al carrito correctamente</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
+                  <a href="{% url 'historial_arriendos' %}"><button type="button" class="btn btn-primary">Ver Carrito</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#" class="volver-arriba" id="volverArriba"><img src="{% static './Images/Iconos/ScrollUp.png'%}" alt="Volver Arriba"></a>
+
+    <footer>
+        <div class="container text-center">
+            <img src="{% static './Images/Iconos/Logo.png'%}" alt="MasterBikes" class="logo">
+            <p class="footer-description">Descubre más sobre nuestra tienda y contáctanos en nuestras redes sociales:</p>
+            <ul class="iconos-redes">
+                <li><a href="#"><img src="{% static './Images/Iconos/LogoWhatsapp.png'%}" alt="Logo Whatsapp"></a></li>
+                <li><a href="#"><img src="{% static './Images/Iconos/LogoInsta.png'%}" alt="Logo Instagram"></a></li>
+                <li><a href="#"><img src="{% static './Images/Iconos/LogoTikTok.png'%}" alt="Logo Tiktok"></a></li>
+            </ul>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="{% url 'contacto' %}">Contacto</a></li>
+                <li class="list-inline-item"><a href="{% url 'sobrenosotros' %}">Acerca de nosotros</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="{% static './js/script.js' %}"></script>
+
+</body>
+</html>

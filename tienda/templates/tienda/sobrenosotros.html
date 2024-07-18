@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterBikes - Sobre Nosotros</title>
+    <link rel="stylesheet" href="{% static './css/stylesobrenosotros.css' %}" />
+    <link rel="icon" href="Imagenes/Iconos/S.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg .bg-black justify-content-center">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static './Images/Iconos/LogoMB.png' %}" alt="LogoPagina" class="logoPagina"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">    
+                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                        <a class="nav-link" href="{% url 'bicicletas' %}">Bicicletas</a>
+                        <a class="nav-link" href="{% url 'reparaciones' %}">Reparaciones</a>
+                        
+                        <div class="sesion">
+                            {% if user.is_authenticated %}
+                            <span class="navbar-text">
+                                Bienvenido, {{ user.username }} |
+                            </span>
+                            <a class="nav-link" href="{% url 'profile' %}"><button class="btn btn-primary">Perfil</button></a>
+                            <a class="nav-link" href="{% url 'logout' %}"><button class="btn btn-primary">Cerrar Sesion</button></a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'login' %}"><button class="btn btn-primary"> Iniciar Sesion </button></a>
+                            <a class="nav-link" href="{% url 'registro' %}"><button class="btn btn-primary">Registrarse</button></a>
+                        {% endif %}
+                        </div>
+                        <a class="nav-link carro" href="{% url 'historial_arriendos' %}"><img src="{% static './Images/Iconos/Bicycle.png' %}" alt="Carrito">
+                        
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        <div class="texto">
+            <h1 class="text-center mb-4">Acerca de Nosotros</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static './images/Iconos/Logo.png'%}" alt="Acerca de Nosotros" class="img-fluid mb-4">
+            </div>
+            <div class="col-md-6">
+                <p class="lead">¡Bienvenido a MasterBikes!</p>
+                <p>Somos una tienda dedicada a la fabricación y venta de bicicletas desde hace más de 30 años. Nuestro compromiso con la calidad y la satisfacción del cliente nos ha posicionado como una de las empresas más reconocidas en el sector.</p>
+                <p>En MasterBikes no solo fabricamos bicicletas para adultos y niños, de paseo, montaña y ciclismo, sino que también estamos innovando para ofrecer nuevos servicios que respondan a las necesidades actuales de nuestros clientes.</p>
+                <p>A partir de ahora, además de nuestras bicicletas de alta calidad, estamos introduciendo servicios de reparación y arriendo. Entendemos la importancia de mantener tu bicicleta en óptimas condiciones y por eso ofrecemos un servicio de reparación especializado, donde podrás programar una cita para resolver cualquier problema con tu bicicleta.</p>
+                <p>Además, para quienes necesitan una bicicleta por períodos cortos, ahora ofrecemos un servicio de arriendo flexible, ideal para turistas, grupos de ciclistas y personas que desean probar nuestros productos antes de comprar.</p>
+                <p>Nuestra transición a MasterBikes representa un compromiso con la innovación y la excelencia en el servicio al cliente. Estamos implementando una plataforma tecnológica que mejorará nuestros procesos de fabricación, gestión de inventarios y experiencia de compra.</p>
+                <p>¡Gracias por elegir MasterBikes como tu aliado en el mundo de las bicicletas!</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <img src="{% static './Images/Iconos/Logo.png'%}" alt="MasterBikes" class="logo">
+            <p class="footer-description">Descubre más sobre nuestra tienda y contáctanos en nuestras redes sociales:</p>
+            <ul class="iconos-redes">
+                <li><a href="#"><img src="{% static './Images/Iconos/LogoWhatsapp.png'%}" alt="Logo Whatsapp"></a></li>
+                <li><a href="#"><img src="{% static './Images/Iconos/LogoInsta.png'%}" alt="Logo Instagram"></a></li>
+                <li><a href="#"><img src="{% static './Images/Iconos/LogoTikTok.png'%}" alt="Logo Tiktok"></a></li>
+            </ul>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="{% url 'contacto' %}">Contacto</a></li>
+                <li class="list-inline-item"><a href="{% url 'sobrenosotros' %}">Acerca de nosotros</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{% static './js/script.js' %}"></script>
+    
+</body>
+</html>

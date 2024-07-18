@@ -1,0 +1,15 @@
+{% extends "tienda/base.html" %}
+{% block title %}Arriendo de Bicicleta{% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Arriendo de Bicicleta: {{ bicicleta.nombre }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Solicitar Arriendo</button>
+    </form>
+</div>
+
+{% endblock %}
